@@ -34,7 +34,7 @@ class PaycheckTracker {
     echo "Bonuses: \${$this->bonuses}\n";
     echo "Total Pay: \${$total}\n";
     echo "Payment Method: {$depositType}\n";
-    echo "High Earning: " . ($this->isHighEearning() ? "Yes" : "No") . "\n\n";
+    echo "High Earning: " . ($this->isHighEarning() ? "Yes" : "No") . "\n\n";
   }
 
   // should calculate total pay using hours, hourly rate, and bonuses
@@ -48,8 +48,15 @@ class PaycheckTracker {
   }
 
   // should return true if total pay is over $1000, otherwise false
-  public function isHighEearning() {
+  public function isHighEarning() {
     return $this->calculateTotalPay() > 1000;
+  }
+
+  // should increase bonuses based on a percentage amount passed in
+  public function increaseBonus($percent) {
+    if ($percent > 0) {
+      $this->bonuses += $this->bonuses * ($percent / 100);
+    }
   }
 }
 
